@@ -1,0 +1,7 @@
+Hello! I am reaching out to let you know that your antivirus product "$#" falsely reports Nim Windows Installers as malware.
+
+Nim is a relatively new programming language, and unfortunately other new programming languages (such as Go) suffer from this exact issue. We are having trouble with bringing new users to use this amazing language and false positives with antiviruses are one of the biggest issues for us since it leaves an awful first impression for newcomers to the language.
+
+Feel free to reach out for any more information.
+
+Here is a list of the false positives that I've found, along with their original download links, their virus total links, the specific false positive category and the specific engine version.
