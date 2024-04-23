@@ -1,10 +1,11 @@
 {.define: ssl.}
 
-import std/[os, httpclient, parsecsv, tables, strutils, streams, json]
+import std/[os, httpclient, parsecsv, tables, strutils, streams, json, times]
 
 const
-  vtkey = staticRead("vt_key")
+  virusTotalKey{.strdefine.}: string = ""
   email_dir = "email"
+  temp_dir = "templates"
   json_dir = "json"
 
 # table[antivirus] = Table[version, (detection, engine_version)]
@@ -23,15 +24,25 @@ p.close()
 
 when not defined(useFetchedData):
   proc downloadJson(hash: string): string = 
-    return newHttpClient("Nim-Lang False Positive Reduction Efforts <3").request("https://www.virustotal.com/api/v3/files/" & hash, HttpGet, "", newHttpHeaders({ "x-apikey": vtkey }))[].bodyStream.readAll()
+    return newHttpClient("Nim-Lang False Positive Reduction Efforts <3").request("https://www.virustotal.com/api/v3/files/" & hash, HttpGet, "", newHttpHeaders({ "x-apikey": virusTotalKey }))[].bodyStream.readAll()
 
+{.warning[UnreachableCode]: off.}
 when defined(fetchAndLeave):
+  # Keep old JSON files. And timestamp the new ones.
+
+  const f = initTimeFormat("yyyy-mm-dd-hh-mm-ss")
   if dirExists(json_dir):
-    removeDir(json_dir)
+    # 2024-04-23T09:38:48+02:00
+    let date = readFile(json_dir & "/date")
+    moveDir(json_dir, json_dir & "-" & date)
   createDir(json_dir)
+
   for hash in hashes:
     writeFile(json_dir & "/" & hash & ".json", downloadJson(hash))
+  writeFile(json_dir & "/date", now().utc().format(f))
+
   quit(0)
+{.warning[UnreachableCode]: on.}
 
 
 for hash in hashes:
@@ -53,9 +64,16 @@ for hash in hashes:
 proc prettifyVersion(s: string): string =
   return "Nim " & s.split("_")[0] & " (" & s.split("_")[1][1..^1] & " bits)"
 
+proc readFromTemp(fn: string): string =
+  if fileExists(fn):
+    return readFile(fn)
+  if fileExists(temp_dir & "/" & fn):
+    return readFile(temp_dir & "/" & fn)
+
+
 let
-  start = readFile("start")
-  ending = readFile("end")
+  start = readFromTemp("start")
+  ending = readFromTemp("end")
 
 if dirExists(email_dir):
   removeDir(email_dir)

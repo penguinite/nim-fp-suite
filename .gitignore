@@ -1,4 +1,9 @@
 vt_key
+.vt_key
+src/vt_key
+src/.vt_key
 samples/
 json/
 email/
+json*
+fpsuite
