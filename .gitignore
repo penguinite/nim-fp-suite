@@ -7,3 +7,10 @@ json/
 email/
 json*
 fpsuite
+emails/
+src/fp/vt_key
+src/fp/.vt_key
+*.json
+!example.json
+!data.json
+build/
