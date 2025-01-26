@@ -14,3 +14,4 @@ src/fp/.vt_key
 !example.json
 !data.json
 build/
+bin/
