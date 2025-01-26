@@ -1,0 +1,10 @@
+{
+    "OS": {
+        "VERSION": {
+            "ARCHITECTURE": {
+                "virustotal": "VIRUSTOTAL_ID",
+                "download": "DOWNLOAD_LINK"
+            }
+        }
+    }
+}
