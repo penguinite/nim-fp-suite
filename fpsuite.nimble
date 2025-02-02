@@ -6,7 +6,7 @@ description   = "A suite of nim programs to help reduce Nim false positives!"
 license       = "BSD-3-Clause"
 srcDir        = "src"
 binDir        = "bin"
-bin           = @["rescan", "fetch", "generate", "all"]
+bin           = @["rescan", "fetch", "generate", "all", "rescan_cmd"]
 
 # Dependencies
 

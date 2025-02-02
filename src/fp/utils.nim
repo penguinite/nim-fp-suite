@@ -207,7 +207,6 @@ proc isVTRescanDone*(id,apikey: string, client = createHttpClient()): bool =
     if not json["data"].hasKey("attributes"):
       return false
 
-
     if not json["data"]["attributes"].hasKey("status"):
       return false
 
@@ -216,6 +215,21 @@ proc isVTRescanDone*(id,apikey: string, client = createHttpClient()): bool =
     return status == "completed"
   else:
     return false
+
+proc rescanVersion*(hash: string, versionData: (HashToVersion, HashToDownload)) =
+  echo "Issuing rescan for ", prettifyVersion(tupleVerToString(versionData[0][hash][0]), versionData[0][hash][1])
+  let rescanData = issueVTRescan(hash, fetchVirustotalKey())
+  if isSome(rescanData):
+    echo "Rescan issue succeeded!"
+    echo "Waiting patiently now for VT to finish scanning..."
+    var count = 0
+    while not isVTRescanDone(get(rescanData), fetchVirustotalKey()):
+      inc count
+      echo "Rescan nr.", count
+      sleep(60000)
+    echo "Moving on now!"
+  else:
+    echo "Rescan issue failed..."
 
 proc parseVTData*(input: JsonNode, nimdata: (HashToVersion, HashToDownload)): VTData =
   ## When given data from getVTScanData(), it parses into a VTData object.

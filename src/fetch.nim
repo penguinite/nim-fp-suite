@@ -1,12 +1,12 @@
 {.define: ssl.}
 
-import fp/[utils], std/[os, tables, options, json]
+import fp/[utils], std/[os, tables, options, json, times]
 
 var versionData = parseNimData(getNimDataFile())
 
 if dirExists("json"):
   removeDir("json")
-  createDir("json")
+createDir("json")
 
 for hash, version in versionData[0].pairs:
   echo "Fetching VT scan data for ", hash
@@ -19,3 +19,5 @@ for hash, version in versionData[0].pairs:
     echo "Moving on!"
   else:
     echo "Fetch failed... Moving on"
+writeFile("json/time", $(now().utc))
+echo "Time: ", readFile("json/time")
