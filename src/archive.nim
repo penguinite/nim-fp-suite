@@ -7,3 +7,12 @@ if not dirExists("json"):
 # Create the archive folder
 createDir("archive")
 
+let time = readFile("json/time")
+
+proc colonToDot(s: string): string =
+  for ch in s:
+    case ch:
+    of ':': result.add "."
+    else: result.add ch
+
+moveDir("json", "archive/data-" & colonToDot(time))
