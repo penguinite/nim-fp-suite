@@ -16,7 +16,7 @@ var num = 0 # Number of *current* tasks running.
 for hash in versionData[0].keys:
   when compileOption("threads"):
     echo "Threads enabled! Running ", limit, " rescans at a time!"
-    if num >= 4:
+    if num >= limit:
       sleep(60000)
       num = 0
     inc num
