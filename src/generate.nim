@@ -2,6 +2,11 @@
 
 import fp/utils, std/[tables, strutils, os]
 
+if not dirExists("json"):
+  echo "Couldn't find VT data to generate emails with."
+  echo "Are you sure you ran 'nimble run fetch' before running this command?"
+  quit(1)
+
 var
   versionData = parseNimData(getNimDataFile())
   startT = readFromTemp("start")
