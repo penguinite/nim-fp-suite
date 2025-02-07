@@ -15,8 +15,8 @@ proc prettifyVersion*(ver, arch: string, os = "Windows"): string =
   ## Used for generating the emails to be sent out to antivirus companies.
   return "Nim version $1 ($2; $3)" % [ver, arch, os]
 
-proc versionToFilename*(ver: string, arch: string): string =
-  return "nim_" & ver & "_" & arch & "_data.json"
+proc versionToFilename*(ver: string, arch: string, os = "windows"): string =
+  return "nim_$1_$2_$3_data.json" % [ver, arch, os]
 
 proc tupleVerToString*(ver: (int, int, int)): string =
   return "$1.$2.$3" % [$(ver[0]),$(ver[1]),$(ver[2])]
@@ -103,14 +103,10 @@ proc parseNimData*(input: string): (HashToVersion, HashToDownload) =
   ## Parses the `data.json` file into a proper NimData object.
   ## 
   ## Basically, this proc returns a bunch of amazing data.
-  
-  # TODO: For now, since we only scan Windows binaries, we can just
-  # skip scanning anything else. But a less hacky implement would be nice.
-  for version, archNode in parseJson(input)["windows"].pairs:
-    for arch in archNode.keys:
-      echo "Found data for version: ", prettifyVersion(version, arch)
-      result[0][archNode[arch]["virustotal"].getStr()] = (parseNimVersion(version), arch)
-      result[1][archNode[arch]["virustotal"].getStr()] = archNode[arch]["download"].getStr()
+  let json = parseJson(input)
+  for hash in json.keys:
+    result[0][hash] = (parseNimVersion(json[hash]["version"].getStr()), json[hash]["architecture"].getStr())
+    result[1][hash] = json[hash]["download"].getStr()
   return result
 
 const outputDir*{.strdefine.} = "output"
