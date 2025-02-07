@@ -1,0 +1,27 @@
+name: Issue rescans to VirusTotal.
+on:
+  pull_request:
+  push:
+  schedule:
+    # We have more than enough computation power to issue rescans every day.
+    # Since these just issue API requests to VirusTotal who has to actually scan them.
+    #
+    # Also, these hardly make a dent in VT's scanning infrastructure,
+    # VT's documentation says to contact them for rescanning more than 50k files per day.
+    # As of Feb 2025, we are only scanning ~29 files. Which VT is more than capable of handling.
+    - cron: '0 0 * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: jiro4989/setup-nim-action@v1
+      with:
+        nim-version: 'stable'
+    - name: Update repo
+      run: git pull origin main
+    - name: Create .vt_key
+      run: echo "${{ secrets.VIRUSTOTALKEY }}" > .vt_key
+    - name: Run a one-line script
+      run: nimble run rescan
