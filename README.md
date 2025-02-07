@@ -18,7 +18,7 @@ This single repository includes a suite of programs each designed for a specific
 So in order to use this suite of tools, you should do the following:
 
 1. Get a VirusTotal API key and create a file named `.vt_key` containing it.
-2. Execute `nimble run rescan` to re-scan every nim binary. (The command finishes immediately but waiting for the rescans to finish takes a while.)
+2. (Optional) Execute `nimble run rescan` to re-scan every nim binary. (The command finishes immediately but waiting for the rescans to finish takes a while about an hour or two.)
 2. Execute `nimble run fetch` to fetch VirusTotal data
 3. Adjust the `start` and `end` templates to your hearts content. (Maybe add your own contact info instead of mine lol)
 4. And then run `nimble run generate` to generate the emails!
@@ -27,3 +27,13 @@ So in order to use this suite of tools, you should do the following:
 You now have to manually find each antivirus company's email and forward the results to them. `nim-fp-suite` might in the future make this process easier, but I have decided not to implement it for now.
 
 Here is a [github repo that should help](https://github.com/yaronelh/False-Positive-Center)
+
+Note: The reason why issuing rescans is optional is because with GitHub Actions, I've setup a workflow to automatically do this with my own API key every day, so you should be able to just skip the second step. :-)
+
+## Archived VirusTotal data
+
+In the past, this repo used to only store the tools needed for email generation but i'd honestly like to merge this repo with the [nim-fp-data](https://github.com/penguinite/nim-fp-data) repo which archives historical VirusTotal data for Nim versions.
+
+I wanna do this mostly to lessen the burden of maintenance, but also I understand that most people cloning this repo are here for the tools and not the archived data and so it will be a waste of bandwidth to store that here.
+
+Maybe I could split the actual logic into a separate repo, but that means maintaining three repos. Or I could run the workflows on my personal server, and keep the data there, which is not that bad.
