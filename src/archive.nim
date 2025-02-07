@@ -14,4 +14,8 @@ proc colonToDot(s: string): string =
     of ':': result.add "."
     else: result.add ch
 
-moveDir("json", "archive/data-" & colonToDot(time))
+let name = "data-" & colonToDot(time)
+moveDir("json", "archive/" & name)
+
+removeFile("archive/latest")
+writeFile("archive/latest", name)
