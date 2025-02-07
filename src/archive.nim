@@ -19,3 +19,5 @@ moveDir("json", "archive/" & name)
 
 removeFile("archive/latest")
 writeFile("archive/latest", name)
+
+removeFile("archive/" & name & "/time")
