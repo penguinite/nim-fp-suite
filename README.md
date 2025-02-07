@@ -18,7 +18,7 @@ This single repository includes a suite of programs each designed for a specific
 So in order to use this suite of tools, you should do the following:
 
 1. Get a VirusTotal API key and create a file named `.vt_key` containing it.
-2. Execute `nimble run rescan` to re-scan every nim binary. (This will take a while, at least an hour or two.)
+2. Execute `nimble run rescan` to re-scan every nim binary. (The command finishes immediately but waiting for the rescans to finish takes a while.)
 2. Execute `nimble run fetch` to fetch VirusTotal data
 3. Adjust the `start` and `end` templates to your hearts content. (Maybe add your own contact info instead of mine lol)
 4. And then run `nimble run generate` to generate the emails!
