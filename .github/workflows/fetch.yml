@@ -1,0 +1,31 @@
+name: Fetch data from VirusTotal
+on:
+  pull_request:
+  push:
+  schedule:
+    # 3 hours is more than enough for the rescans to go through.
+    - cron: '0 3 * * sun'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: jiro4989/setup-nim-action@v1
+      with:
+        nim-version: 'stable'
+    - name: Update repo
+      run: git pull origin main
+    - name: Create .vt_key
+      run: echo "${{ secrets.VIRUSTOTALKEY }}" > .vt_key
+    - name: Fetch data from VT
+      run: nimble run fetch
+    - name: Move data into the archive folder
+      run: nimble run archive
+    - name: Commit new data into the repo
+      uses: EndBug/add-and-commit@v9
+      with:
+        author_name: penguinite (automated)
+        author_email: penguinite@tuta.io
+        message: 'archive: new data from virustotal'
+        add: '.'
