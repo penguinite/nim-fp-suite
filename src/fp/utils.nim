@@ -57,7 +57,7 @@ proc fetchVirustotalKey*(): string =
     return readFile(".vt_key")
 
   # Check if a key was provided at build-time
-  if virusTotalKey != "":
+  if not virusTotalKey.isEmptyOrWhitespace():
     return virusTotalKey
 
   # If all else fails, then we also fail.

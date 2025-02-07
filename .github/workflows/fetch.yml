@@ -1,7 +1,5 @@
 name: Fetch data from VirusTotal
 on:
-  pull_request:
-  push:
   schedule:
     # 3 hours is more than enough for the rescans to go through.
     - cron: '0 3 * * sun'

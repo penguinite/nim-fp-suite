@@ -1,7 +1,5 @@
 name: Issue rescans to VirusTotal.
 on:
-  pull_request:
-  push:
   schedule:
     # We have more than enough computation power to issue rescans every day.
     # Since these just issue API requests to VirusTotal who has to actually scan them.
