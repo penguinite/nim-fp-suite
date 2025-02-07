@@ -2,6 +2,10 @@
 
 import fp/[utils], std/[os, tables, options, json, times]
 
+# Try fetching VT key before doing anything
+# More of a UX change than a practical one.
+discard fetchVirustotalKey()
+
 var versionData = parseNimData(getNimDataFile())
 
 if dirExists("json"):

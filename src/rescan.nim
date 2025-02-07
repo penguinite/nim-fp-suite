@@ -2,6 +2,10 @@
 
 import fp/[utils], std/[os, tables]
 
+# Try fetching VT key before doing anything
+# More of a UX change than a practical one.
+discard fetchVirustotalKey()
+
 var versionData = parseNimData(getNimDataFile())
 
 # This is the max number of commands we will run per minute
