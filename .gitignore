@@ -7,7 +7,8 @@ email/
 emails/
 src/fp/vt_key
 src/fp/.vt_key
-!example.json
-!data.json
 build/
 bin/
+*.sh
+*.zip
+*vt_key*
