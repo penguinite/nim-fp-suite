@@ -1,11 +1,11 @@
 {
-	"efcfdfd8b7225e10fe9d619b3288a5b25467c5f39ec526e80501393691274612" {
+	"efcfdfd8b7225e10fe9d619b3288a5b25467c5f39ec526e80501393691274612": {
 		"version": "2.2.4",
 		"download": "https://nim-lang.org/download/nim-2.2.4_x64.zip",
 		"architecture": "x64",
 		"os": "windows"
 	},
-	"cea831b306ca52afc62f8351287967b07aac1586cacc0d21f1a1b6e98cc2e12a" {
+	"cea831b306ca52afc62f8351287967b07aac1586cacc0d21f1a1b6e98cc2e12a": {
 		"version": "2.2.4",
 		"download": "https://nim-lang.org/download/nim-2.2.4_x32.zip",
 		"architecture": "x32",
@@ -35,13 +35,13 @@
 		"architecture": "x32",
 		"os": "windows"
 	},
-	"3ab287e482e2ebd490c25b0de817e3a79015cce54c9e8658ac9dcb6405d828dc" {
+	"3ab287e482e2ebd490c25b0de817e3a79015cce54c9e8658ac9dcb6405d828dc": {
 		"version": "2.0.16",
 		"download": "https://nim-lang.org/download/nim-2.0.16_x64.zip",
 		"architecture": "x64",
 		"os": "windows"
 	},
-	"202124673576cdeecf8e47f38f19f574a3377fed79bf7f6655e3fa3f307d2368" {
+	"202124673576cdeecf8e47f38f19f574a3377fed79bf7f6655e3fa3f307d2368": {
 		"version": "2.0.16",
 		"download": "https://nim-lang.org/download/nim-2.0.16_x32.zip",
 		"architecture": "x32",
