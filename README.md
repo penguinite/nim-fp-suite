@@ -1,5 +1,9 @@
 # Antivirus False Positive Reduction Suite. (nim-fp-suite)
 
+**Migration notice:** The git repository for this project has been moved to [https://codeberg.org/penguinite/nim-fp-suite](https://codeberg.org/penguinite/nim-fp-suite), this link will still work but any new updates or data won't make it here. Consider migrating to the link above.
+
+---
+
 A set of programs and files to generate emails which will be sent to antivirus companies to (hopefully) reduce false positives in the long run. 
 
 ## *2025 Update*
