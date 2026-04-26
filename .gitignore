@@ -12,3 +12,6 @@ bin/
 *.sh
 *.zip
 *vt_key*
+nimble.develop
+nimble.paths
+nimbledeps
