@@ -1,4 +1,16 @@
 {
+	"dafe9c81f8118fac2e07ee24f3649448a590d8b0f3b55d1a97c66f99035cc8e6": {
+		"version": "2.2.12",
+		"download": "https://nim-lang.org/download/nim-2.2.12_x64.zip",
+		"architecture": "x64",
+		"os": "windows"
+	},
+	"4f82883c541e67dc2380f23dd302ab999ba8ffdf961efd80541850db8bc998cb": {
+		"version": "2.2.12",
+		"download": "https://nim-lang.org/download/nim-2.2.12_x32.zip",
+		"architecture": "x32",
+		"os": "windows"
+	},
 	"fe0686a9b298e5b13d0a983df37e002a8c6320f8b16cc45a51d15cf4046a109f": {
 		"version": "2.2.10",
 		"download": "https://nim-lang.org/download/nim-2.2.10_x64.zip",
