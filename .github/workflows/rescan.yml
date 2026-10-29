@@ -22,4 +22,6 @@ jobs:
     - name: Create .vt_key
       run: echo "${{ secrets.VIRUSTOTALKEY }}" > .vt_key
     - name: Run a one-line script
+      env:
+        VIRUSTOTAL_KEY: ${{ secrets.VIRUSTOTALKEY }}
       run: nimble run rescan
