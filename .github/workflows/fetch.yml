@@ -8,8 +8,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - uses: jiro4989/setup-nim-action@v1
+    - uses: actions/checkout@v7
+    - uses: jiro4989/setup-nim-action@v2
       with:
         nim-version: 'stable'
     - name: Update repo
@@ -21,9 +21,9 @@ jobs:
     - name: Move data into the archive folder
       run: nimble run archive
     - name: Commit new data into the repo
-      uses: EndBug/add-and-commit@v9
+      uses: EndBug/add-and-commit@v10
       with:
         author_name: penguinite (automated)
-        author_email: penguinite@tuta.io
+        author_email: me@penguinite.dev
         message: 'archive: new data from virustotal'
         add: '.'
